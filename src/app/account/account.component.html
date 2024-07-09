@@ -1,0 +1,74 @@
+
+
+<div class=" p-5">
+    <div class=" addressBorder p-3 "  style="border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
+        <h4 class="" style="color: #4c4f53;">HESAP AYARLARIM</h4>
+  
+        {{object.email}}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mx-0 justify-content-start ">
+      <div class="col-md-7 col-lg-5 px-lg-2 col-xl-4 px-xl-0 px-xxl-3 ">
+        <form 
+        method="POST"
+        class="w-100 rounded-1 p-4 border bg-white"
+        action="https://herotofu.com/start"
+        
+      >
+        <label class="d-block mb-4">
+          <span class="form-label d-block">Adı</span>
+          <input
+            #first_name
+            name="name"
+            type="text"
+            class="form-control"
+            placeholder=""
+            value="{{object.first_name}}"
+          />
+        </label>
+
+        <label class="d-block mb-4">
+          <span class="form-label d-block">Soyadı</span>
+          <input
+            #last_name
+            name="last_name"
+            type="text"
+            class="form-control"
+            placeholder=""
+            value="{{object.last_name}}"
+          />
+        </label>
+
+        <label class="d-block mb-4">
+          <span class="form-label d-block">email adresi</span>
+          <input
+            #email
+            name="email"
+            type="email"
+            class="form-control"
+            placeholder=""
+            value=" {{object.email}}"
+          />
+        </label>
+
+        <label class="d-block mb-4">
+          <span class="form-label d-block"> Yeni şifre</span>
+          <input #passwd name="city" type="password" class="form-control" placeholder="" value=""  />
+        </label>
+
+        <div class="mb-3">
+          <button type="submit" class="btn btn-outline-dark px-3 rounded-3" (click)="update(first_name,last_name,email,passwd)" >
+            Güncelle
+          </button>
+        </div>
+
+      </form>
+      </div>
+    </div>
+</div>
+
+
+
+

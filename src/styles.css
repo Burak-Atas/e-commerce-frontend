@@ -8,3 +8,241 @@
 .form-control.ng-dirty.ng-valid {
     border-left: 5px solid #41A948;
 }
+.pointer{
+    cursor: pointer;
+}
+
+.color-pink{
+    color: #f7444e!important;
+}
+.color-blue{
+    color: #002c3e;
+}
+
+.background-pink{
+    background-color: #f7444e!important;
+}
+.background-gray-2{
+    background-color: #ffffff!important;
+    border: 1px solid #8d8989;
+}
+.top-description{
+    height: 12vh;
+}
+
+.ifHoverThenPink:hover{
+    color: #f7444e!important;
+}
+
+#advert{
+    height: 90vh;
+    width: 100%;
+}
+#advert2{
+    height: 80vh;
+    width: 100%;
+}
+.basket:hover{
+    color: #f7444e!important;
+}
+.bg-1{
+    background-image: url(assets/images/slider-bg.jpg);
+    background-size: cover;
+    height: 100%; 
+    width: 100%;
+}
+.bg-2{
+    background-image: url(assets/images/arrival-bg.jpg);
+    background-size: cover;
+    height: 100%; 
+    width: 100%;
+}
+
+.pt-10{
+    padding-top: 150px;
+}
+.pl-10{
+    padding-left: 150px;
+}
+
+.fs-big{
+    font-size: 70px;
+}
+.w-500{
+    width: 500px;
+}
+
+.bg-light-gray{
+    background-color: #d4ced0;
+    padding: 75px 45px;
+    height: 50vh;
+    
+}
+.shop{
+    
+    display: inline-block;
+    padding: 10px 45px;
+    background-color: #f7444e;
+    border: 1px solid #f7444e;
+    color: #ffffff;
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.shop:hover{
+    background-color: #fff;
+    border: 1px solid #f7444e;
+    color: #f7444e;
+}
+
+.d-flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.d-flex-center2{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+.d-flex-center3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.w-33{
+    width: 30%;
+}
+.inputumsu{
+    
+    width: 50%;
+    height: 60px;
+    border: none;
+    border-radius: 90px;
+    outline: none;
+    padding: 5px 25px;
+    background-color: #ffffff;
+    margin-top: 15px;
+    text-align: left;
+    
+}
+.card-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+.d-flex-adverd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.h-y100{
+    height: 100%;
+    
+}
+
+.category-area{
+    border: 1px solid #f7444e;
+    width: 20%;
+    border-radius: 5px;
+    height: 50px;
+}
+.border-bottomm{
+    border-bottom: 1px solid #f7444e;
+}
+.category-area a {
+    color: #f7444e;
+    text-align: center;
+    font-size: 25px;
+    text-decoration: none;
+}
+.category-area a:hover {
+    color: #fff;
+}
+
+.btn-pink{
+    background-color: #f7444e!important;
+    color: white!important;
+    border: 1px solid #f7444e!important;
+}
+.btn-pink-outline{
+    border: 1px solid #f7444e!important;
+    color: #f7444e!important;
+    background-color: white!important;
+}
+.btn-pink-outline:hover{
+    background-color: #f7444e!important;
+    color: white!important;
+    border: 1px solid #f7444e!important;
+}
+.btn-pink:hover{
+    color: #f7444e!important;
+    background-color: white!important;
+   
+}
+.category-area:hover {
+    background-color: #f7444e;
+}
+
+.form-control.ng-touched.ng-invalid{
+    border-left: 5px solid #a94442;
+}
+
+.form-control.ng-dirty.ng-valid{
+    border-left: 5px solid #41A948;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* .btn-secondary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #f7444e!important;
+    --bs-btn-border-color: #f7444e!important;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ffffff;
+    --bs-btn-hover-border-color: #565e64;
+    --bs-btn-focus-shadow-rgb: 130, 138, 145;
+    --bs-btn-active-color: #fff!important;
+    --bs-btn-active-bg: #f7444e!important;
+    --bs-btn-active-border-color: #51585e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #6c757d;
+    --bs-btn-disabled-border-color: #6c757d;
+} */
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+    /* Styles for mobile devices */
+    #advert{
+        height: 50vh;
+        width: 100%;
+    }
+    .bg-1{
+        height: 50vh; /* Reduce background image height for mobile devices */
+    }
+    .pt-10{
+        padding-top: 50px;
+    }
+    .pl-10{
+        padding-left: 20px; /* Reduce padding for mobile devices */
+    }
+    .fs-big{
+        font-size: 30px; /* Reduce font size for mobile devices */
+    }
+    .w-500{
+        width: 100%; /* Make the text area take up the full width of the screen */
+    }
+    .badge{
+        display: none;
+    }
+}

@@ -1,31 +1,41 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { map, Observable, tap } from "rxjs";
+import { Observable } from "rxjs";
 import { AuthService } from "../services/auth.service";
+import { User } from "../models/user";
 
 @Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate {
-    constructor(
-        private authService: AuthService,
-        private router: Router
-        ) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-    canActivate(
-        route: ActivatedRouteSnapshot, 
-        state: RouterStateSnapshot): boolean | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        
-        return this.authService.user.pipe(
-            map(user => {
-                return !!user && user.email == "info@sadikturan.com"
-            }),
-            tap(isAdmin => {
-                if(!isAdmin) {
-                    this.router.navigate(['/auth']);
-                }
-            })
-        );        
-
-
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    // LocalStorage'dan kullanıcı bilgilerini alın
+    const userData = localStorage.getItem("user");
+    console.log('Stored user data:', userData);
+    
+    if (userData) {
+      // Kullanıcı bilgilerini JSON olarak ayrıştırın
+      const user: User = JSON.parse(userData);
+      console.log('Parsed user data:', user);
+      
+      // Kullanıcının email adresini kontrol edin
+      if (user.email === 'eyuphan@gmail.com') {
+        return true;
+      }
     }
 
+    // Kullanıcı bilgileri geçerli değilse veya email eşleşmiyorsa, auth sayfasına yönlendirin
+    this.router.navigate(['/auth']);
+    return false;
+  }
 }
+
+
+
+

@@ -1,0 +1,144 @@
+<!-- <button (click)="addressGonder()" class="btn btn-danger" >gonder</button>
+<button (click)="EditAdress()" class="btn btn-danger" >güncelle</button>
+<button (click)="removeAddress()" class="btn btn-danger" >sil</button> -->
+
+
+<div class=" p-5">
+    <div class=" addressBorder p-3 "  style="border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
+        <h4 class="" style="color: #4c4f53;">ADRES BİLGİLERİM</h4>
+        <span data-toggle="modal" data-target="#exampleModal">
+            <i class="fa-solid fa-plus"></i> <span class="cursor" style=" text-decoration: underline">Yeni Adres Ekle</span>
+        </span>
+        
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mx-0 justify-content-start">
+      <div class="col-md-7 col-lg-5 px-lg-2 col-xl-4 px-xl-0 px-xxl-3">
+        <form *ngIf="myadress"
+        method="POST"
+        class="w-100 rounded-1 p-4 border bg-white"
+        action="https://herotofu.com/start"
+        
+      >
+        <label class="d-block mb-4">
+          <span class="form-label d-block">Ev adı</span>
+          <input
+           #house_name
+            name="name"
+            type="text"
+            class="form-control"
+            placeholder="{{myadress.house_name}}"
+            value="{{myadress.house_name}}"
+          />
+        </label>
+
+        <label class="d-block mb-4">
+          <span class="form-label d-block">Sokak adı</span>
+          <input
+          #street_name
+            name="address1"
+            type="text"
+            class="form-control"
+            placeholder="{{myadress.street_name}}"
+            value="{{myadress.street_name}}"
+          />
+        </label>
+
+        <label class="d-block mb-4">
+          <span class="form-label d-block">Şehir</span>
+          <input
+            #city_name
+            name="address2"
+            type="text"
+            class="form-control"
+            placeholder="{{myadress.city_name}}"
+            value="{{myadress.city_name}}"
+          />
+        </label>
+
+        <label class="d-block mb-4">
+          <span class="form-label d-block">Posta Kodu</span>
+          <input name="city" type="text" class="form-control" placeholder="{{myadress.pin_code}}" value="{{myadress.pin_code}}" #pin_code />
+        </label>
+
+        <div class="mb-3">
+          <button type="submit" class="btn btn-outline-dark px-3 rounded-3" (click)="EditAdress(house_name,street_name,city_name,pin_code)">
+            Güncelle
+          </button>
+        </div>
+
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yeni Adres</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form
+            method="POST"
+            class="w-100 rounded-1 p-4 border bg-white"
+            action="https://herotofu.com/start"
+          >
+            <label class="d-block mb-4">
+              <span class="form-label d-block">Ev adı</span>
+              <input
+                 #house_name
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="Demirciler apartmanı"
+              />
+            </label>
+    
+            <label class="d-block mb-4">
+              <span class="form-label d-block">Sokak adı</span>
+              <input
+              #street_name
+                name="address1"
+                type="text"
+                class="form-control"
+                placeholder="Merdiven sokak"
+              />
+            </label>
+    
+            <label class="d-block mb-4">
+              <span class="form-label d-block">Şehir</span>
+              <input
+              #city_name
+                name="address2"
+                type="text"
+                class="form-control"
+                placeholder="Adana"
+              />
+            </label>
+    
+            <label class="d-block mb-4">
+              <span class="form-label d-block">Posta Kodu</span>
+              <input name="city" type="text" class="form-control" placeholder="1234" #pin_code />
+            </label>
+
+            <div class="mb-3">
+              <button *ngIf="!myadress" type="submit" class="btn btn-outline-dark px-3 rounded-3" (click)="addressGonder(house_name,street_name,city_name,pin_code)" >
+                Adresi Kayıt et
+              </button>
+              <button *ngIf="myadress" type="submit" class="btn btn-outline-dark px-3 rounded-3" (click)="EditAdress(house_name,street_name,city_name,pin_code)" >
+                Adresi Kayıt et
+              </button>
+            </div>
+ 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

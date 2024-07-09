@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, last, Subject, tap, throwError } from 'rxjs';
 import { AuthResponse } from '../models/auth-response';
 import { User } from '../models/user';
 
@@ -8,44 +8,57 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class AuthService {
+  private url = "http://localhost:8000";
 
-  api_key = "AIzaSyDyFVtGZ7hvlhLIO4p8GkleoHU51EFV5EA";
+  api_key="AIzaSyABbajbu-ZJVrChzFShsYpxf7B7SHRFQ24"
   user = new BehaviorSubject<User|null>(null);
 
   constructor(private http: HttpClient) { }
 
-  register(email: string, password: string) {
+  register(email: string,first_name: string,last_name: string, password: string) {
 
-      return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + this.api_key, {
+      return this.http.post<AuthResponse>(`${this.url}/users/signup` , {
         email: email,
         password: password,
-        returnSecureToken: true
+        first_name: first_name,
+        last_name: last_name,
+
       }).pipe(
         tap(response => {
-          this.handleUser(response.email, response.localId, response.idToken, response.expiresIn);
+          console.log(response)
         }),
         catchError(this.handleError)
       );
   }
 
   logout() {
-    this.user.next(null);
     localStorage.removeItem("user");
+    window.location.reload();
+
   }
 
   login(email:string, password: string) {
-    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + this.api_key, {
+    return this.http.post<AuthResponse>(`${this.url}/users/login` , {
         email: email,
         password: password,
-        returnSecureToken: true
     }).pipe(
       tap(response => {
-        this.handleUser(response.email, response.localId, response.idToken, response.expiresIn);
+        console.log("data ")
+        this.handleUser(response.email,response.fisrt_name,response.last_name,response.token)
       }),
       catchError(this.handleError)
     );
   }
 
+  
+  isLoggedIn(): boolean {
+    return this.user.value !== null;
+  }
+
+  // Add this method to redirect to login page
+  loginPage(): void {
+    window.location.href = '/auth';
+  }
   autoLogin() {
     if(localStorage.getItem("user") == null) {
       return;
@@ -53,7 +66,7 @@ export class AuthService {
 
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-    const loadedUser = new User(user.email, user.id,user._token, new Date(user._tokenExpirationDate));
+    const loadedUser = new User(user.email, user.first_name,user.last_name,user.token);
 
     if(loadedUser.token) {
       this.user.next(loadedUser);
@@ -84,14 +97,14 @@ export class AuthService {
   }
 
 
-  private handleUser(email: string, localId: string, idToken: string, expiresIn: string) {
-    const expirationDate = new Date(new Date().getTime() + (+expiresIn * 1000))
+  private handleUser(email: string, first_name: string, last_name: string, _token: string) {
+    
         
     const user = new User(
       email,
-      localId,
-      idToken,
-      expirationDate
+      first_name,
+      last_name,
+      _token
     );
 
     this.user.next(user);

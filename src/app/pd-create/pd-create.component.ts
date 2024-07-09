@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
+import { Category } from '../models/category';
 import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-product-create',
-  templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.css'],
+  selector: 'app-pd-create',
+  templateUrl: './pd-create.component.html',
+  styleUrls: ['./pd-create.component.css'],
   providers: [CategoryService]
 })
-export class ProductCreateComponent implements OnInit {
+export class PdCreateComponent implements OnInit  {
 
   categories: Category[] = [];
   error: string = "";
   model: any = {
-    name: "iphone 17",
-    price: 20000,
-    categoryId: "0"
+
+    categoryId: ""
   };
 
   constructor(
@@ -35,7 +34,7 @@ export class ProductCreateComponent implements OnInit {
 
   saveProduct(form: NgForm) {
 
-    const extensions = ["jpeg","jpg","png"];
+    const extensions = ["jpeg","jpg","png","webp"];
     const extension = this.model.imageUrl.split(".").pop();
 
     if(extensions.indexOf(extension) == -1) {
@@ -49,7 +48,7 @@ export class ProductCreateComponent implements OnInit {
     }
 
     const product = { 
-      id: 1, 
+      id: "", 
       name: this.model.name, 
       price: this.model.price, 
       imageUrl: this.model.imageUrl, 
@@ -67,9 +66,17 @@ export class ProductCreateComponent implements OnInit {
     }
 
     console.log(this.model);
-
-
-
   }
 
+  onImageChange(event: any) {
+    const file = event.target.files[0];
+    this.productService.saveImage(file).subscribe(data => {
+      this.model.imageUrl = data.url; // data.url, HTTP isteğinin sonucunda dönen veri içindeki URL'yi temsil ediyor
+      console.log(data.url)
+    });
+  }
+  
+  
+
+ 
 }

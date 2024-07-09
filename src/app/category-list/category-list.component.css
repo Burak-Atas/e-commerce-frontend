@@ -1,0 +1,12 @@
+.border-radius-5{
+    border-radius: 5px;
+}
+
+.cat {
+    transition: transform 0.2s!important;
+  }
+  
+  .cat:hover {
+    cursor: pointer;
+    transform: scale(1.05)!important;
+  }

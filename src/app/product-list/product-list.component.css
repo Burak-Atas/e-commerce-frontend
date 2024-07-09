@@ -1,0 +1,12 @@
+.card {
+    transition: transform 0.2s!important;
+  }
+  
+  .card:hover {
+    cursor: pointer;
+    transform: scale(1.05)!important;
+  }
+  .pagination-controls .ngx-pagination .previous,
+.pagination-controls .ngx-pagination .next {
+  font-size: 1.5rem; /* İkon boyutunu ayarlayın */
+}

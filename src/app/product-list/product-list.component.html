@@ -1,33 +1,23 @@
-<div *ngIf="!loading">
-    <div *ngIf="products.length>0; else noProducts">
-        <ng-template [ngTemplateOutlet]="productList" [ngTemplateOutletContext]="{products: products}"></ng-template>
-    </div>
-</div>
 
-<ng-template #productList let-products="products">
-    <div *ngFor="let product of products" >
-        <div *ngIf="product.isActive" class="card mb-3 p-1">
-            <div class="row">
-                <div class="col-3">
-                    <img src="/assets/images/{{ product.imageUrl }}" alt="" class="img-fluid rounded-start">
-                </div>
-                <div class="col-9">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <a routerLink="/products/{{product.id}}" class="btn btn-primary">Ürün Detay</a>
-                    </div>
-                </div>
+  <section style="background-color: #eee;" *ngIf="products">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-12 col-lg-4 mb-4 mb-lg-0" *ngFor="let product of products | paginate: { itemsPerPage: 6, currentPage: page }">
+          <div class="card mb-4">
+            <img src="http://{{product.imageUrl}}" class="card-img-top" alt="Laptop" routerLink="/products/{{product.id}}" style="height: 250px;" />
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <p class="small"><a routerLink="/products/category/{{product.categoryId}}" class="text-muted">{{getCateogry(product.categoryId)}}</a></p>
+              </div>
+              <div class="d-flex justify-content-between mb-3">
+                <h5 class="mb-0">{{product.name}}</h5>
+                <h5 class="text-dark mb-0">{{product.price}} TL</h5>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <pagination-controls class="d-flex justify-content-center" (pageChange)="page = $event"></pagination-controls>
     </div>
-</ng-template>
+  </section>
 
-<ng-template #noProducts>
-    <div class="alert alert-warning">
-        no products
-    </div>
-</ng-template>
-
-<div *ngIf="loading" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>

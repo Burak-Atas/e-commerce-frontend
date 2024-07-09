@@ -38,19 +38,22 @@ export class AuthComponent implements OnInit {
     
     const email = form.value.email;
     const password = form.value.password;
+    const first_name = form.value.first_name;
+    const last_name = form.value.last_name;
+
     let authResponse: Observable<AuthResponse>;
 
     if(this.isLoginMode) {     
       authResponse = this.authService.login(email, password);
     } else {
-      authResponse = this.authService.register(email, password);
+      authResponse = this.authService.register(email,first_name,last_name ,password);
     }
 
     authResponse.subscribe({
       next: () => {
         this.loading = false;
         this.error = "";
-        this.router.navigate(['/']);
+        window.location.href="/";
       },
       error: (err) => {
         this.loading = false;

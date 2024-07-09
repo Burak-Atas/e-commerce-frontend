@@ -1,0 +1,92 @@
+
+
+<section class="">
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-start">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight">
+              FIRAT SHOP <br />
+              <span class="text-secondary">ÜRÜN OLUŞTURMA EKRANI</span>
+            </h1>
+            <p style="color: hsl(217, 10%, 50.8%)">
+               Ürünü ait ürün adı , ürün fiyatı , ürün resmi , ürün açıklaması , ürün kategorisi ve bu ürünün gösterilip gösterilmeyeceğini simgeleyen ürün aktif mi bilgisini girdikten sonra oluştura tıklayınız
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0 ">
+            <div class="card">
+              <div class="card-body py-5 px-md-5">
+                <form #form="ngForm" class="" (ngSubmit)="saveProduct(form)" >
+                  
+                  <div class="row">
+                    <div class="alert alert-danger text-center mt-3" role="alert" *ngIf="error">
+                      {{error}}
+                     </div>
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline" >
+                        <input required minlength="5" [(ngModel)]="model.name" #name="ngModel" type="text" name="name"  id="form3Example1" class="form-control" />
+                        <label class="form-label" for="form3Example1">Ürün Adı</label>
+                        <div class="text-danger mt-1 text-center" *ngIf="name.invalid && name.touched">
+                            lütfen geçerli bir isim  giriniz
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline" >
+                        <input [(ngModel)]="model.price" type="number" required min="0" max="100000" name="price" #price="ngModel"  id="form3Example2" class="form-control" />
+                        <label class="form-label" for="form3Example2">Ürün Fiyatı</label>
+                        <div class="text-danger mt-1" *ngIf="price.invalid && price.touched">
+                            Ürün fiyatı için negatif değer girmeyiniz.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                 
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input [(ngModel)]="model.imageUrl" (change)="onImageChange($event)" type="file" name="imageUrl" id="imageUrl" class="form-control">
+                    <label class="form-label" for="form3Example3">Ürün Resmi</label>
+    
+                  </div>
+  
+               
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form3Example4">Ürün Açıklaması</label>
+                    <ckeditor [(ngModel)]="model.description" name="description" id="description"></ckeditor>
+ 
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="categoryId">Ürün Kategorisi</label>
+                    <select [(ngModel)]="model.categoryId" name="categoryId" id="categoryId" class="form-select">
+                        <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+                    </select>
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input [(ngModel)]="model.isActive" class="form-check-input" type="checkbox" name="isActive" id="isActive">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Ürün sergilenecek mi 
+                    </label>
+ 
+                  </div>
+  
+                 <div class="d-flex-center mb-3">
+                    <button class="btn btn-outline-dark flex-shrink-0 w-50" type="submit" [disabled]="form.invalid" >
+                        <i class="bi-cart-fill me-1"></i>
+                       ÜRÜN OLUŞTUR
+                       
+                    </button>
+                 </div>
+  
+      
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+  </section>
+
+

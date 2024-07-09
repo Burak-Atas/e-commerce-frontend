@@ -1,0 +1,55 @@
+
+
+<div class="px-4 px-lg-0 mt-5" *ngIf="sparis">
+    <div class="pb-3">
+        <div class="container">
+            <div class="row" *ngFor="let siparis of sparis">
+                <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                    <div class="">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="p-2 px-3 text-uppercase">Ürün</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="p-2 px-3 text-uppercase">Ürün Adı</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="p-2 px-3 text-uppercase">Ürün Kategorisi</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Ürün Fiyatı</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">{{translate(siparis.ordered_on)}}</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let order of siparis.order_list">
+                                <tr>
+                                    <th scope="row" class="border-0">
+                                        <div class="p-2">
+                                            <img src="http://{{order.imageUrl}}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                        </div>
+                                    </th>
+                                    <td class="border-0 align-middle"><strong>{{order.name}}</strong></td>
+                                    <td class="border-0 align-middle"><strong>Kategori</strong></td>
+                                    <td class="border-0 align-middle"><strong>{{order.price}}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <!-- <span class="fw-bold">Toplam Sipariş Tutarı:{{siparis.total_price}}</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!sparis">
+  asdsadasd
+</div>
+

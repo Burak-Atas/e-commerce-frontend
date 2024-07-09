@@ -1,0 +1,11 @@
+/* src/app/notification/notification.component.css */
+.notification {
+    position: fixed;
+    top: 80px;
+    right: 50px;
+    background-color: #c0cdc0;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  

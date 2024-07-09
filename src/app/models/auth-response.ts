@@ -1,8 +1,6 @@
 export interface AuthResponse {
-    idToken: string;
+    token: string;
     email: string;
-    refreshToken: string;
-    expiresIn: string;
-    localId: string;
-    registered?: boolean;
+    fisrt_name: string;
+    last_name: string;
 }

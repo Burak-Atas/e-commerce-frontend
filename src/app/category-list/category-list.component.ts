@@ -34,4 +34,11 @@ export class CategoryListComponent implements OnInit {
     }
   }
 
+  deleteCat(){
+    this.categoryService.deleteCategroy("66664c2debf0559bfb7beb21").subscribe(data=>{
+      console.log(data);
+      
+    })
+  }
+
 }

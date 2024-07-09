@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductCreateComponent } from './product-create.component';
+import { MysparisComponent } from './mysparis.component';
 
-describe('ProductCreateComponent', () => {
-  let component: ProductCreateComponent;
-  let fixture: ComponentFixture<ProductCreateComponent>;
+describe('MysparisComponent', () => {
+  let component: MysparisComponent;
+  let fixture: ComponentFixture<MysparisComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductCreateComponent ]
+      declarations: [ MysparisComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProductCreateComponent);
+    fixture = TestBed.createComponent(MysparisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

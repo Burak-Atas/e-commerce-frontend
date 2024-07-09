@@ -7,7 +7,7 @@ import { AuthService } from "./auth.service";
 // local service
 @Injectable()
 export class ProductService {
-    private url = "https://ng-shopapp-d4ef5-default-rtdb.firebaseio.com/";
+    private url = "http://localhost:8000/";
 
     constructor(
         private http: HttpClient, 
@@ -16,7 +16,7 @@ export class ProductService {
 
     getProducts(categoryId: number): Observable<Product[]> {
         return this.http
-            .get<Product[]>(this.url + "products.json")
+            .get<Product[]>(this.url + "users/productview")
             .pipe(
                 map(data => {
                     const products: Product[] = [];
@@ -24,11 +24,11 @@ export class ProductService {
                     for(const key in data) {
                         if(categoryId) {
                             if(categoryId == data[key].categoryId) {
-                                products.push({ ...data[key], id: key });
+                                products.push(data[key]);
                             }
                         }
                         else {
-                            products.push({ ...data[key], id: key });
+                            products.push(data[key]);
                         }
                     }
 
@@ -40,7 +40,7 @@ export class ProductService {
     }
 
     getProductById(id: string): Observable<Product> {
-        return this.http.get<Product>(this.url + "products/" + id + ".json").pipe(delay(1000));
+        return this.http.get<Product>(this.url + "users/search?name=" + id).pipe(delay(1000));
     }
 
     createProduct(product: Product): Observable<Product> {
@@ -48,8 +48,20 @@ export class ProductService {
             take(1),
             tap(user => console.log(user)),
             exhaustMap(user => {
-                return this.http.post<Product>(this.url + "products.json?auth=" + user?.token, product);
+                return this.http.post<Product>(this.url + "admin/addproduct" , product);
             })
         );
     }
+
+    deleteProduct(id:any):Observable<Product>{
+        return this.http.get<Product>(this.url+"/admin/product/delete"+id)
+    }
+    
+  saveImage(image: File) {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    return this.http.post<any>(this.url+'admin/saveimage', formData)
+  }
+
 }
